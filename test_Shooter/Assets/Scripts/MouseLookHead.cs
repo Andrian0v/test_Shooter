@@ -8,13 +8,23 @@ public class MouseLookHead : MonoBehaviour
     [SerializeField] private float minimunVert = -65.0f;
     [SerializeField] private float maximumVert = 65.0f;
 
+    private PlayerCharacter _playerCharacter;
+
     private float _rotationX = 0;
+
+    void Start()
+    {
+        _playerCharacter = GetComponentInParent<PlayerCharacter>();
+    }
 
     void Update()
     {
-        _rotationX -= Input.GetAxis("Mouse Y") * VerticalSens;
-        _rotationX = Mathf.Clamp(_rotationX, minimunVert, maximumVert);
+        if (_playerCharacter.PlayerHealthGet() > 0)
+        {
+            _rotationX -= Input.GetAxis("Mouse Y") * VerticalSens;
+            _rotationX = Mathf.Clamp(_rotationX, minimunVert, maximumVert);
 
-        transform.localEulerAngles = new Vector3(_rotationX, 0, 0);
+            transform.localEulerAngles = new Vector3(_rotationX, 0, 0);
+        }
     }
 }

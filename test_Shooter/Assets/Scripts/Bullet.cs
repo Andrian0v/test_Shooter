@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 10f;
+    [SerializeField] private int _damagePoint = 20;
 
     void Update()
     {
@@ -13,6 +14,10 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<PlayerCharacter>())
+        {
+            other.GetComponent<PlayerCharacter>().Damage(_damagePoint);
+        }
         Destroy(this.gameObject);
     }
 

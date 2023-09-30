@@ -9,15 +9,20 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _speed = 6.0f;
 
     private CharacterController _characterController;
+    private PlayerCharacter _playerCharacter;
 
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _playerCharacter = GetComponent<PlayerCharacter>();
     }
 
     void Update()
     {
-        MoveInput();
+        if (_playerCharacter.PlayerHealthGet() > 0)
+        {
+            MoveInput();
+        }
     }
 
     private void MoveInput()
