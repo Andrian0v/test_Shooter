@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class EnemyReact : MonoBehaviour
 {
-    public void ReactToHit()
-    {
-        GetComponent<EnemyAI>().SetAlive(false);
+    [SerializeField] private int _health = 3;
 
-        StartCoroutine(EnemyDie());
+    public void ReactToHit(int damage)
+    {
+        _health -= damage;
+
+        if (_health <= 0)
+        {
+            GetComponent<EnemyAI>().SetAlive(false);
+            StartCoroutine(EnemyDie());
+        }
     }
 
     private IEnumerator EnemyDie()
     {
-        this.transform.Rotate(-75, 0, 0);
-
         yield return new WaitForSeconds(1.5f);
 
         Destroy(this.gameObject);
+    }
+
+    public int GetHealth()
+    {
+        return _health;
     }
 }
