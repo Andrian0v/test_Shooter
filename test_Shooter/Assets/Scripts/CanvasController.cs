@@ -55,7 +55,6 @@ public class CanvasController : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-        print("EXIT");
     }
     void CursorState(bool state)
     {

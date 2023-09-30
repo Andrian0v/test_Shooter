@@ -362,6 +362,7 @@
 "Assets/Scripts/PlayerCharacter.cs"
 "Assets/Scripts/PlayerMove.cs"
 "Assets/Scripts/PlayerShooter.cs"
+"Assets/Scripts/StartGame.cs"
 -langversion:9.0
 
 /deterministic
